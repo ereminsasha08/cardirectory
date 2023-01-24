@@ -19,12 +19,17 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping
-    public List<Car> getCars(CarFilter carFilter) {
+    public List<CarDTO> getCars(CarFilter carFilter) {
         return carService.getCars(carFilter);
     }
 
     @PostMapping
     public void saveCar(@RequestBody @Valid CarDTO carDto){
         carService.save(carDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCar(@PathVariable Integer id){
+            carService.delete(id);
     }
 }

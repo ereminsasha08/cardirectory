@@ -9,6 +9,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
+@NoArgsConstructor
 public class CarFilter implements Specification<Car> {
 
     private String licensePlate;

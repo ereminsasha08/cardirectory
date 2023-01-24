@@ -4,14 +4,14 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class CarDTO {
 
-
-    private Integer id;
     @NotNull
     @Size(min = 5)
     private String licensePlate;
