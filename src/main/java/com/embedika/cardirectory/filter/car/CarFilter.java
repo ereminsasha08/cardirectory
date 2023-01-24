@@ -21,7 +21,7 @@ public class CarFilter implements Specification<Car> {
 
     private String brand;
 
-    private String yearManufacture;
+    private short yearManufacture;
 
 
     @Override
@@ -33,7 +33,7 @@ public class CarFilter implements Specification<Car> {
         if (StringUtils.isNotBlank(brand)) {
             predicates.add(cb.equal(root.get("brand"), brand));
         }
-        if (StringUtils.isNotBlank(yearManufacture)) {
+        if (yearManufacture != 0) {
             predicates.add(cb.equal(root.get("yearManufacture"), yearManufacture));
         }
         return predicates.size() == 0 ? null : cb.and(predicates.toArray(new Predicate[predicates.size()]));
