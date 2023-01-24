@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.domain.Persistable;
 
 @Entity
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Persistable;
 @Setter
 @NoArgsConstructor
 @JsonSerialize
+@ToString(exclude = "id")
 public class Car implements Persistable<Integer> {
 
     @Id

@@ -1,5 +1,6 @@
 package com.embedika.cardirectory.service.car;
 
+import com.embedika.cardirectory.CarExistException;
 import com.embedika.cardirectory.domain.Car;
 import com.embedika.cardirectory.dto.CarDTO;
 import com.embedika.cardirectory.filter.car.CarFilter;
@@ -25,6 +26,10 @@ public class CarServiceImp implements CarService {
 
     @Override
     public void save(CarDTO carDto) {
+        List<Car> cars = getCars(new CarFilter(carDto));
+        if (cars.size() !=0){
+            throw new CarExistException(cars.get(0).toString());
+        }
         carRepository.save(mapper.map(carDto, Car.class));
     }
 }

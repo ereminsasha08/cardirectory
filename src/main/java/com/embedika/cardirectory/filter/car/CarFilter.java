@@ -2,6 +2,7 @@ package com.embedika.cardirectory.filter.car;
 
 import com.embedika.cardirectory.domain.Car;
 
+import com.embedika.cardirectory.dto.CarDTO;
 import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -22,6 +23,12 @@ public class CarFilter implements Specification<Car> {
     private String brand;
 
     private short yearManufacture;
+
+    public CarFilter(CarDTO carDto) {
+        this.licensePlate = carDto.getLicensePlate();
+        this.yearManufacture = carDto.getYearManufacture();
+        this.brand = carDto.getBrand();
+    }
 
 
     @Override

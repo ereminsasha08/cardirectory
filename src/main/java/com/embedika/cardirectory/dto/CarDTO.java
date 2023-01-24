@@ -1,16 +1,15 @@
 package com.embedika.cardirectory.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CarDTO {
+
 
     private Integer id;
     @NotNull
@@ -24,4 +23,5 @@ public class CarDTO {
     @NotNull
     @Min(value = 1900)
     private short yearManufacture;
+
 }
