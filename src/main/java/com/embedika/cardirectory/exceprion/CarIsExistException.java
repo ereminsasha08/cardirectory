@@ -1,14 +1,14 @@
 package com.embedika.cardirectory.exceprion;
 
-import com.embedika.cardirectory.dto.CarDTO;
+import com.embedika.cardirectory.domain.Car;
 
-public class CarIsExistException extends RuntimeException{
+public class CarIsExistException extends RuntimeException {
 
-     static final String message = "The car is exist: ";
+    static final String message = "The car is exist: ";
 
 
-    public CarIsExistException(CarDTO carDTO) {
-        super(CarIsExistException.message + carDTO.toString());
+    public CarIsExistException(Car car) {
+        super(CarIsExistException.message + car.toString());
 
     }
 }

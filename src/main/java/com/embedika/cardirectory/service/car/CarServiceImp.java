@@ -1,8 +1,8 @@
 package com.embedika.cardirectory.service.car;
 
-import com.embedika.cardirectory.exceprion.CarIsExistException;
 import com.embedika.cardirectory.domain.Car;
 import com.embedika.cardirectory.dto.CarDTO;
+import com.embedika.cardirectory.exceprion.CarIsExistException;
 import com.embedika.cardirectory.exceprion.CarIsNotExistException;
 import com.embedika.cardirectory.filter.car.CarFilter;
 import com.embedika.cardirectory.repository.CarRepository;
@@ -21,20 +21,14 @@ public class CarServiceImp implements CarService {
     private final ModelMapper mapper;
 
     @Override
-    public List<CarDTO> getCars(CarFilter carFilter) {
-        return carRepository.findAll(carFilter)
-                .parallelStream()
-                .map(car -> mapper.map(car, CarDTO.class))
-                .toList();
+    public List<Car> getCars(CarFilter carFilter) {
+        return carRepository.findAll(carFilter);
     }
 
     @Override
-    public void save(CarDTO carDto) {
-        List<CarDTO> cars = getCars(new CarFilter(carDto));
-        if (cars.size() != 0) {
-            throw new CarIsExistException(cars.get(0));
-        }
-        carRepository.save(mapper.map(carDto, Car.class));
+    public Car create(CarDTO carDto) {
+        checkNew(carDto);
+        return carRepository.save(mapper.map(carDto, Car.class));
     }
 
     @Override
@@ -47,4 +41,10 @@ public class CarServiceImp implements CarService {
         }
     }
 
+    private void checkNew(CarDTO carDto) {
+        List<Car> cars = getCars(new CarFilter(carDto));
+        if (cars.size() != 0) {
+            throw new CarIsExistException(cars.get(0));
+        }
+    }
 }
