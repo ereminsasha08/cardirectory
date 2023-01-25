@@ -23,11 +23,24 @@ public class StatisticBdAdvice {
     public void saveCar() {
     }
 
+    @Pointcut(value = "execution( public * com.embedika.cardirectory.repository.car.CarRepositoryPostgres.delete*(..))")
+    public void deleteCar() {
+    }
+
     @AfterReturning(pointcut = "saveCar()", returning = "result")
-    public void lastTimeSaveCar(Object result){
+    public void lastTimeSaveCar(Object result) {
         LocalDateTime now = LocalDateTime.now();
         statisticService.setLastTimeSaveCar(now);
+        statisticService.setLastTimeModification(now);
         log.info("Save car: {}", result);
+    }
+
+    @After(value = "deleteCar()")
+    public void lastTimeDeleteCar() {
+        LocalDateTime now = LocalDateTime.now();
+        statisticService.setLastTimeDeleteCar(now);
+        statisticService.setLastTimeModification(now);
+        log.info("Save car");
     }
 
 }
