@@ -1,12 +1,13 @@
 package com.embedika.cardirectory.exceprion;
 
-public class CarIsNotExistException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
-     static final String message = "The car is not exist id: ";
 
+public class CarIsNotExistException extends ResponseStatusException {
+    static final String message = "The car is not exist with id: ";
 
     public CarIsNotExistException(Integer id) {
-        super(CarIsNotExistException.message + id);
-
+        super(HttpStatus.UNPROCESSABLE_ENTITY, message + id);
     }
 }
