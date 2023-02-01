@@ -1,10 +1,15 @@
 package com.embedika.cardirectory.repository;
 
 import com.embedika.cardirectory.domain.Car;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.embedika.cardirectory.filter.car.CarFilter;
 import org.springframework.data.repository.NoRepositoryBean;
 
-@NoRepositoryBean
-public interface CarRepository extends JpaRepository<Car, Integer>, JpaSpecificationExecutor<Car> {
+import java.util.List;
+
+public interface CarRepository {
+    List<Car> findAll(CarFilter carFilter);
+
+    Car save(Car map);
+
+    void deleteById(Integer id);
 }
